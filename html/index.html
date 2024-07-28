@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialog</title>
+  <script src="../js/jquery-1.8.2.js"></script>
+  <script src="../js/_dialog.js"></script>
+  <style>
+    body {
+
+      transform: translate();
+      transition: 1s;
+    }
+
+    #btn {
+      margin-top: 1000px;
+      margin-bottom: 1000px;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">Dialog</button>
+</body>
+<script>
+  $("#btn").click(function () {
+    $.dialog_open({
+      title: '提示信息',
+      width: '800px',
+      onclose: function () {
+        $.dialog_close()
+      },
+      columns: [
+        { name: '序号', prop: "index", align: "center", width: "50px" }, // 预留索引字段 - index
+        { name: '姓名', prop: "name", align: "left", width: "100px" },
+        { name: '性别', prop: "sex", align: "left", width: "100px" },
+        { name: '年龄', prop: "age", align: "left", width: "100px" },
+        { name: '工作', prop: "work", align: "left", width: "200px" },
+        { name: '操作', prop: "operates", align: "center", width: "100px" }, // 预留操作栏关键字 - operates
+      ],
+      datas: [
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+        { name: "zhansan", sex: "男", age: 11, work: "前端" },
+        { name: "lisi", sex: "男", age: 12, work: "后端" },
+        { name: "wangwu", sex: "女", age: 21, work: "测试" },
+      ],
+      operates: [
+        {
+          name: "编辑",
+          tag: "button",
+          class: "edit",
+          fun: function (ev, row, index) {
+            console.log('编辑', ev, row, index);
+          },
+        }, {
+          name: "删除",
+          tag: "button",
+          class: "del",
+          fun: function (ev, row, index) {
+            console.log('删除', ev, row, index);
+          },
+        }
+      ],
+      groups: [
+        {
+          name: "确定",
+          tag: "button",
+          id: "comfrim",
+          fun: function () {
+            setTimeout(function () {
+              console.log('点击确定完成接口调用之后关闭弹窗');
+              $.dialog_close()
+            }, 2000);
+          },
+        }, {
+          name: "取消",
+          tag: "button",
+          id: "cancel",
+          fun: function () {
+            setTimeout(function () {
+              console.log('点击取消干了一些事后关闭弹窗');
+              $.dialog_close()
+            }, 2000);
+          },
+        }, {
+          name: "测试",
+          tag: "button",
+          id: "test",
+          fun: function () {
+            $.dialog_close()
+            console.log('ceshi');
+          }
+        }
+      ]
+    })
+  })
+</script>
+
+</html>
